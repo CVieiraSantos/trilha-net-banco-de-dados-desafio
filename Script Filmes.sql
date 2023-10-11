@@ -1,3 +1,92 @@
+--Exercício 1
+SELECT [Nome], [Ano] FROM [Filmes]
+--****************************************--
+
+--Exercício 2
+SELECT [Nome], [Ano] FROM [Filmes] ORDER BY [Ano]
+-- ***********************************************
+
+--Exercício 3
+SELECT [Nome], [Ano], [Duracao] FROM [Filmes] WHERE [Nome] LIKE '%Futuro'
+--***********************************************************************------
+
+--Exercício 4
+SELECT [Nome], [Ano], [Duracao] FROM [Filmes] WHERE [Ano] = 1997
+--**************************************************************--------
+
+--Exercício 5
+SELECT [Nome], [Ano], [Duracao] FROM [Filmes] WHERE [Ano] > 2000
+--***************************************************************--------
+
+--Exercício 6
+SELECT [Nome], [Ano], [Duracao] FROM [Filmes] WHERE [Duracao] > 100 AND [Duracao] < 150 ORDER BY [Duracao] ASC
+--**************************************************************************************************************-------
+
+--Exercício 7
+SELECT [Ano], [Duracao],
+    COUNT([Ano]) AS QUANTIDADE
+FROM [Filmes] 
+    GROUP BY [Ano]
+ORDER BY [Duracao] DESC
+--*******************************************--
+
+--Exercício 8
+SELECT [Id],
+    [PrimeiroNome],
+[UltimoNome],
+    [Genero] FROM [Atores]
+WHERE [Genero] =  'M'
+--*****************************************--
+
+--Exercício 9
+SELECT [Id],
+    [PrimeiroNome],
+[UltimoNome],
+    [Genero] FROM [Atores]
+WHERE [Genero] =  'F'
+    ORDER BY [PrimeiroNome]
+
+--Exercício 10
+SELECT F.[Nome],
+    G.[Genero]
+FROM [Filmes] F
+    INNER JOIN [FilmesGenero] FG
+ON F.[Id] = FG.[IdFilme]
+    INNER JOIN [Generos] G
+ON FG.[IdGenero] = G.[Id]
+--*****************************--
+
+--Exercício 11
+SELECT F.[Nome],
+    G.[Genero]
+FROM [Filmes] F
+    INNER JOIN [FilmesGenero] FG
+ON F.[Id] = FG.[IdFilme]
+    INNER JOIN [Generos] G
+ON FG.[IdGenero] = G.[Id] 
+    AND G.[Genero] = 'Mistério'
+--********************************--
+
+
+--Exercício 12
+
+SELECT F.[Nome],
+    A.[PrimeiroNome],
+A.[UltimoNome],
+    EF.[Papel]
+FROM [Filmes] F
+    INNER JOIN [ElencoFilme] EF
+ON F.[Id] = EF.[IdFilme]
+    INNER JOIN [Atores] A
+ON A.[Id] = EF.[IdAtor]
+
+
+
+
+
+
+
+
 CREATE DATABASE [Filmes]
 GO
 USE [Filmes]
@@ -325,3 +414,7 @@ REFERENCES [dbo].[Generos] ([Id])
 GO
 ALTER TABLE [dbo].[FilmesGenero] CHECK CONSTRAINT [FK__FilmesGen__IdGen__2E1BDC42]
 GO
+
+
+
+
